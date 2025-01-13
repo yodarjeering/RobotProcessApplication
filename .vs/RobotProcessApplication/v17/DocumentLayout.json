@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Owner\\source\\repos\\RobotProcessApplication\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DE011277-5B67-43DE-9772-B517C376E89C}|RobotProcessApplication.csproj|C:\\Users\\Owner\\source\\repos\\RobotProcessApplication\\services\\mouserecorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{DE011277-5B67-43DE-9772-B517C376E89C}|RobotProcessApplication.csproj|C:\\Users\\Owner\\source\\repos\\RobotProcessApplication\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE011277-5B67-43DE-9772-B517C376E89C}|RobotProcessApplication.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE011277-5B67-43DE-9772-B517C376E89C}|RobotProcessApplication.csproj|c:\\users\\owner\\source\\repos\\robotprocessapplication\\services\\mouserecorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DE011277-5B67-43DE-9772-B517C376E89C}|RobotProcessApplication.csproj|solutionrelative:services\\mouserecorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DE011277-5B67-43DE-9772-B517C376E89C}|RobotProcessApplication.csproj|c:\\users\\owner\\source\\repos\\robotprocessapplication\\forms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{DE011277-5B67-43DE-9772-B517C376E89C}|RobotProcessApplication.csproj|C:\\Users\\Owner\\source\\repos\\RobotProcessApplication\\forms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DE011277-5B67-43DE-9772-B517C376E89C}|RobotProcessApplication.csproj|solutionrelative:forms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DE011277-5B67-43DE-9772-B517C376E89C}|RobotProcessApplication.csproj|C:\\Users\\Owner\\source\\repos\\RobotProcessApplication\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DE011277-5B67-43DE-9772-B517C376E89C}|RobotProcessApplication.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DE011277-5B67-43DE-9772-B517C376E89C}|RobotProcessApplication.csproj|C:\\Users\\Owner\\source\\repos\\RobotProcessApplication\\services\\mouseplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,11 +34,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "MainForm.cs",
               "DocumentMoniker": "C:\\Users\\Owner\\source\\repos\\RobotProcessApplication\\Forms\\MainForm.cs",
               "RelativeDocumentMoniker": "Forms\\MainForm.cs",
@@ -47,18 +47,17 @@
               "ViewState": "AQIAAD8AAAAAAAAAAAAlwEMAAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-10T06:08:00.568Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MouseRecorder.cs",
               "DocumentMoniker": "C:\\Users\\Owner\\source\\repos\\RobotProcessApplication\\Services\\MouseRecorder.cs",
               "RelativeDocumentMoniker": "Services\\MouseRecorder.cs",
               "ToolTip": "C:\\Users\\Owner\\source\\repos\\RobotProcessApplication\\Services\\MouseRecorder.cs",
               "RelativeToolTip": "Services\\MouseRecorder.cs",
-              "ViewState": "AQIAABwAAAAAAAAAAAAQwB8AAAAzAAAA",
+              "ViewState": "AQIAACQAAAAAAAAAAAAQwFoAAAA4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-10T06:05:00.002Z",
               "IsPinned": true,
@@ -78,13 +77,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Owner\\source\\repos\\RobotProcessApplication\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\Owner\\source\\repos\\RobotProcessApplication\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAoAAAAAAAAAAAAAwBAAAAAaAAAA",
+              "ViewState": "AQIAABAAAAAAAAAAAAAwwBYAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-09T12:27:34.187Z",
               "EditorCaption": ""
