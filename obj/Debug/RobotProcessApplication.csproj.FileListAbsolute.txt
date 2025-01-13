@@ -1,0 +1,13 @@
+C:\Users\Owner\source\repos\RobotProcessApplication\bin\Debug\RobotProcessApplication.exe.config
+C:\Users\Owner\source\repos\RobotProcessApplication\bin\Debug\RobotProcessApplication.exe
+C:\Users\Owner\source\repos\RobotProcessApplication\bin\Debug\RobotProcessApplication.pdb
+C:\Users\Owner\source\repos\RobotProcessApplication\obj\Debug\RobotProcessApplication.csproj.AssemblyReference.cache
+C:\Users\Owner\source\repos\RobotProcessApplication\obj\Debug\RobotProcessApplication.Properties.Resources.resources
+C:\Users\Owner\source\repos\RobotProcessApplication\obj\Debug\RobotProcessApplication.csproj.GenerateResource.cache
+C:\Users\Owner\source\repos\RobotProcessApplication\obj\Debug\RobotProcessApplication.csproj.CoreCompileInputs.cache
+C:\Users\Owner\source\repos\RobotProcessApplication\obj\Debug\RobotProcessApplication.exe
+C:\Users\Owner\source\repos\RobotProcessApplication\obj\Debug\RobotProcessApplication.pdb
+C:\Users\Owner\source\repos\RobotProcessApplication\obj\Debug\RobotProcessApplication.Forms.MainForm.resources
+C:\Users\Owner\source\repos\RobotProcessApplication\bin\Debug\WindowsInput.dll
+C:\Users\Owner\source\repos\RobotProcessApplication\bin\Debug\WindowsInput.xml
+C:\Users\Owner\source\repos\RobotProcessApplication\obj\Debug\RobotPro.1EAF54CC.Up2Date
