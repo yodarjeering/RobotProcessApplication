@@ -17,10 +17,10 @@ namespace RobotProcessApplication.Services
         private InputSimulator _simulator;
         private List<MouseAction> _mouseActions;
 
-        public MousePlayer(List<MouseAction> mouseActions)
+        public MousePlayer(IReadOnlyList<MouseAction> actions)
         {
             _simulator = new InputSimulator();
-            _mouseActions = new List<MouseAction>(mouseActions);
+            _mouseActions = new List<MouseAction>(actions);
         }
 
         public async Task PlayActionsAsync(CancellationToken cancellationToken)
@@ -64,6 +64,14 @@ namespace RobotProcessApplication.Services
                     _simulator.Mouse.LeftButtonClick();
                 }
             }
+        }
+
+        public void PlayAction(MouseAction action)
+        {
+            // TimeSpan を DateTime に変換する場合
+            DateTime actionTime = DateTime.Now.Add(action.Timestamp); // 例: 現在時刻に加算
+
+            // アクションの再生処理を実装
         }
     }
 }

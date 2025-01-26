@@ -12,40 +12,59 @@ namespace RobotProcessApplication.Services
     {
         private List<MouseAction> _mouseActions;
         private bool _isRecording;
+        private Stopwatch _stopwatch;
+        private IntPtr _mouseHookId = IntPtr.Zero;
 
         // Windows APIの定義
         private delegate IntPtr LowLevelMouseProc(int nCode, IntPtr wParam, IntPtr lParam);
-        private LowLevelMouseProc _mouseProc;
-        private IntPtr _hookID = IntPtr.Zero;
+        private LowLevelMouseProc _proc;
 
         public MouseRecorder()
         {
             _mouseActions = new List<MouseAction>();
             _isRecording = false;
-            _mouseProc = HookCallback;
+            _stopwatch = new Stopwatch();
         }
 
         public void StartRecording()
         {
             _mouseActions.Clear();
             _isRecording = true;
-            _hookID = SetHook(_mouseProc);
+            _stopwatch.Start();
+            SetHook();
         }
 
         public void StopRecording()
         {
             _isRecording = false;
-            UnhookWindowsHookEx(_hookID);
+            _stopwatch.Stop();
+            
+            if (_mouseHookId != IntPtr.Zero)
+            {
+                UnhookWindowsHookEx(_mouseHookId);
+                _mouseHookId = IntPtr.Zero; // フックIDをリセット
+            }
+            
+            Debug.Print("録画停止");
         }
 
-        private IntPtr SetHook(LowLevelMouseProc proc)
+        private void SetHook()
         {
-            using (var curProcess = Process.GetCurrentProcess())
-            using (var curModule = curProcess.MainModule)
+            _proc = HookCallback;
+            using (Process curProcess = Process.GetCurrentProcess())
+            using (ProcessModule curModule = curProcess.MainModule)
             {
-                return SetWindowsHookEx(WH_MOUSE_LL, proc,
+                _mouseHookId = SetWindowsHookEx(WH_MOUSE_LL, _proc,
                     GetModuleHandle(curModule.ModuleName), 0);
+                
+                if (_mouseHookId == IntPtr.Zero)
+                {
+                    // エラーハンドリング
+                    int errorCode = Marshal.GetLastWin32Error();
+                    Debug.Print($"フックの設定に失敗しました。エラーコード: {errorCode}");
+                }
             }
+            Debug.Print("グローバルマウスフック開始");
         }
 
         private IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
@@ -64,7 +83,7 @@ namespace RobotProcessApplication.Services
                     RecordMouseClick(mousePoint);
                 }
             }
-            return CallNextHookEx(_hookID, nCode, wParam, lParam);
+            return CallNextHookEx(_mouseHookId, nCode, wParam, lParam);
         }
 
         // Windows APIの関数
@@ -104,6 +123,42 @@ namespace RobotProcessApplication.Services
         {
             return _mouseActions;
         }
+
+        private void OnMouseMove(object sender, MouseEventArgs e)
+        {
+            if (_isRecording)
+            {
+                var screenLocation = Cursor.Position;
+                var timestamp = _stopwatch.Elapsed;
+                _mouseActions.Add(new MouseAction(MouseAction.ActionType.Move, screenLocation, timestamp));
+            }
+        }
+
+        private void OnMouseClick(object sender, MouseEventArgs e)
+        {
+            if (_isRecording)
+            {
+                MouseAction.ActionType actionType = MouseAction.ActionType.Click;
+
+                if (e.Button == MouseButtons.Right)
+                {
+                    actionType = MouseAction.ActionType.RightClick;
+                }
+                else if (e.Button == MouseButtons.Left)
+                {
+                    if (e.Clicks == 2)
+                    {
+                        actionType = MouseAction.ActionType.DoubleClick;
+                    }
+                }
+
+                var screenLocation = Cursor.Position;
+                var timestamp = _stopwatch.Elapsed;
+                _mouseActions.Add(new MouseAction(actionType, screenLocation, timestamp));
+            }
+        }
+
+        public IReadOnlyList<MouseAction> Actions => _mouseActions.AsReadOnly();
     }
 
     public class MouseAction
@@ -111,7 +166,9 @@ namespace RobotProcessApplication.Services
         public enum ActionType
         {
             Move,
-            Click
+            Click,
+            RightClick,
+            DoubleClick
         }
 
         public ActionType Type { get; set; }

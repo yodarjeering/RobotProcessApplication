@@ -16,11 +16,11 @@ namespace RobotProcessApplication.Models
 
         public ActionType Type { get; set; }
         public Point Position { get; set; }
-        public DateTime Timestamp { get; set; }
+        public TimeSpan Timestamp { get; set; }
 
-        public MouseAction(ActionType type, Point position, DateTime timestamp)
+        public MouseAction(ActionType actionType, Point position, TimeSpan timestamp)
         {
-            Type = type;
+            Type = actionType;
             Position = position;
             Timestamp = timestamp;
         }

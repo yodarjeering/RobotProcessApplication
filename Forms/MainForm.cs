@@ -6,6 +6,7 @@ using RobotProcessApplication.Services;
 using System.Collections.Generic;
 using RobotProcessApplication.Models;
 using System.Threading;
+using System.Diagnostics;
 
 namespace RobotProcessApplication.Forms
 {
@@ -37,40 +38,36 @@ namespace RobotProcessApplication.Forms
 
         private async void btnPlayRecording_Click(object sender, EventArgs e)
         {
-            CancellationTokenSource cts = new CancellationTokenSource();
-            CancellationToken cancellationToken = cts.Token;
+            isPlaying = true;
+            btnStopRecording.Enabled = false;
 
-            try
+            // 再生処理
+            player = new MousePlayer(recorder.Actions);
+
+            DateTime previousTime = DateTime.MinValue;
+
+            foreach (var action in recorder.Actions)
             {
-                List<RobotProcessApplication.Services.MouseAction> mouseActions;
-
-                // ロックをかけてコレクションを取得
-                lock (_lockObject)
+                if (previousTime != DateTime.MinValue)
                 {
-                    mouseActions = recorder.GetMouseActions();
+                    var delay = action.Timestamp - previousTime;
+                    if (delay.TotalMilliseconds > 0)
+                    {
+                        await Task.Delay(delay);
+                    }
                 }
 
-                if (mouseActions.Count == 0)
-                {
-                    MessageBox.Show("再生するアクションがありません。");
-                    return;
-                }
+                previousTime = action.Timestamp;
 
-                DateTime previousTime = DateTime.MinValue;
-
-                // mouseActionsのコピーを作成
-                var actionsToPlay = new List<RobotProcessApplication.Services.MouseAction>(mouseActions);
-
-                // MousePlayerのインスタンスを作成（キーボードアクションは渡さない）
-                var mousePlayer = new MousePlayer(mouseActions);
-
-                // actionsToPlay全体を一度に再生
-                await mousePlayer.PlayActionsAsync(cancellationToken);
+                Cursor.Position = action.Position;
+                player.PlayAction(action);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"エラーが発生しました: {ex.Message}");
-            }
+
+            btnStopRecording.Enabled = true;
+            isPlaying = false;
+
+            // 再生終了後にフックを解除
+            recorder.StopRecording();
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
@@ -82,6 +79,7 @@ namespace RobotProcessApplication.Forms
                 recorder.StartRecording();
             }
             recorder.RecordMouseMove(e.Location);
+            Debug.Print("Recorded Mouse Move: " + e.Location);
         }
 
         protected override void OnMouseClick(MouseEventArgs e)
